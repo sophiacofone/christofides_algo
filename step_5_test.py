@@ -42,7 +42,6 @@ def find_other_num(num, list):
         return list[0]
 
 # Using below as an example of a Multigraph to input for step 5
-# 4 nodes - 1,2,3,4
 # [0,1] represents and edge between vertex 0,1
 Multigraph_paths = [[0, 1], [0, 2], [1, 2], [2, 3], [2,4], [3,4]]
 
