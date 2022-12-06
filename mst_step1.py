@@ -82,6 +82,7 @@ def kruskal(graph):
     X=[]
     node_tracker = makeset(graph)
     sorted_graph = sort_by_weight(graph)
+    print(sorted_graph)
     for i in range(len(sorted_graph)):
         subset1 = find(sorted_graph[i][0],node_tracker)
         subset2 = find(sorted_graph[i][1],node_tracker)
@@ -115,16 +116,21 @@ def convert_vis(graph,X):
 def main():
 
     #for testing
-    graph = [{'1': 1, '2': 12, '3': 13},
-            {'0': 1, '2': 17, '3': 13},
-            {'0': 12, '1': 17, '3': 3},
-            {'0': 13, '1': 13, '2': 3}]
+    graph = [{'1': 5, '2': 18, '3': 18, '4': 8, '5': 8}, 
+{'0': 5, '2': 1, '3': 12, '4': 2, '5': 11}, 
+{'0': 18, '1': 1, '3': 18, '4': 15, '5': 6}, 
+{'0': 18, '1': 12, '2': 18, '4': 19, '5': 8}, 
+{'0': 8, '1': 2, '2': 15, '3': 19, '5': 9}, 
+{'0': 8, '1': 11, '2': 6, '3': 8, '4': 9}]
     
     X = kruskal(graph)
+    print("Graph in list of list representation")
     print(X)
 
     src_dict, brendan_version = convert_vis(graph,X)
+    print("Graph in dictonary of dictonary representation")
     print(src_dict)
+    print("Graph in list of dictonary representation")
     print(brendan_version)
 
 
