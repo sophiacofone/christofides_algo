@@ -31,6 +31,7 @@ def find_odd(src_dict):
 def main():
 
     #for testing
+    num_vertices = 6
     graph = [{'1': 5, '2': 18, '3': 18, '4': 8, '5': 8}, 
 {'0': 5, '2': 1, '3': 12, '4': 2, '5': 11}, 
 {'0': 18, '1': 1, '3': 18, '4': 15, '5': 6}, 
@@ -40,7 +41,7 @@ def main():
     
     X = kruskal(graph)
 
-    src_dict, brendan_version = convert_vis(graph,X)
+    src_dict, brendan_version = convert_vis(graph,X,num_vertices)
 
     odd_nodes, graph_odd, brendan_graph_odd = find_odd(src_dict)
     print(graph_odd)

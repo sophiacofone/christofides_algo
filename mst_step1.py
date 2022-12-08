@@ -93,7 +93,7 @@ def kruskal(graph):
     
     return X 
 
-def convert_vis(graph,X):
+def convert_vis(graph,X,num_vertices):
     '''
     Input: 
         Brendan's gen_graph output
@@ -102,12 +102,12 @@ def convert_vis(graph,X):
     Output: MST in dictionary representation
     Note that this also includes a dictionary of dictionaries (src_dict) for clarity
     '''
-    src_dict = {src:{} for src in range(len(graph))}
+    src_dict = {src:{} for src in range(num_vertices)}
     for i,_set in enumerate(X):
         # from src to dest
-        src_dict[_set[0]][_set[1]] = _set[2]
+        src_dict[_set[0]][str(_set[1])] = _set[2]
         # from dest to src
-        src_dict[_set[1]][_set[0]] = _set[2]
+        src_dict[_set[1]][str(_set[0])] = _set[2]
 
     brendan_version = list(src_dict.values())
 
@@ -116,6 +116,7 @@ def convert_vis(graph,X):
 def main():
 
     #for testing
+    num_vertices = 6
     graph = [{'1': 5, '2': 18, '3': 18, '4': 8, '5': 8}, 
 {'0': 5, '2': 1, '3': 12, '4': 2, '5': 11}, 
 {'0': 18, '1': 1, '3': 18, '4': 15, '5': 6}, 
@@ -127,7 +128,7 @@ def main():
     print("Graph in list of list representation")
     print(X)
 
-    src_dict, brendan_version = convert_vis(graph,X)
+    src_dict, brendan_version = convert_vis(graph,X,num_vertices)
     print("Graph in dictonary of dictonary representation")
     print(src_dict)
     print("Graph in list of dictonary representation")
