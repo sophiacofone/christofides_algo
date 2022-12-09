@@ -1,5 +1,4 @@
-def find_eulerian_tour(Multi_Graph, G):
-
+#Robert Lalani 12.08.22
   '''
   G: (NOT MST OR match)
     [{'1': 1, '2': 18, '3': 16, '4': 11},
@@ -12,19 +11,15 @@ def find_eulerian_tour(Multi_Graph, G):
     [[0, 1, 0], [0, 4, 0], [1, 0, 0], [1, 2, 0], [1, 4, 0], [1, 3, 0], [2, 1, 0], [2, 5, 0], [3, 5, 0], [3, 1, 0], [4, 1, 0], [4, 0, 0], [5, 2, 0], [5, 3, 0]]
   '''
 
-  """
+  '''
    
 Input Multi_Graph (MST + Perfect Match) in a list of lists
 
-Action:   For every edge in the multigraph:
+Action: 
+'''
 
-                If node 0 shares an edge node 1
-                  Add node 0 key and node 1 value neighbour dict
-                If node 1 shares an edge node 1 0
-                  Add node 0 key and node 1 value neighbour dict
-    neighbours_dict_Output: Neighbours Dictionary - Key is vertex, Value is  vertices who share an edge
 
-    """
+    
 def find_eulerian_tour(MatchedMSTree, G):
     # find neigbours
     neighbours = {}
@@ -78,3 +73,20 @@ def remove_edge_from_matchedMST(MatchedMST, v1, v2):
             del MatchedMST[i]
 
     return MatchedMST
+
+
+def main(): 
+
+    G = [{'1': 1, '2': 18, '3': 16, '4': 11},
+    {'0': 1, '2': 8, '3': 6, '4': 15},
+    {'0': 18, '1': 8, '3': 4, '4': 14},
+    {'0': 16, '1': 6, '2': 4, '4': 14},
+    {'0': 11, '1': 15, '2': 14, '3': 14}]
+
+
+    #(MST + PerfectMatch)
+    MatchedMSTree = [[0, 1, 0], [0, 4, 0], [1, 0, 0], [1, 2, 0], [1, 4, 0], [1, 3, 0], [2, 1, 0], [2, 5, 0], [3, 5, 0], [3, 1, 0], [4, 1, 0], [4, 0, 0], [5, 2, 0], [5, 3, 0]]
+
+    eulerian_cycle = find_eulerian_tour(MatchedMSTree,G)
+
+    print(eulerian_cycle) 
