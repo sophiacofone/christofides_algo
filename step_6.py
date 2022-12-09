@@ -1,4 +1,4 @@
-def Eulerian_path(): 
+def convert_Eulerian_Circuit(): 
     euler_path = []
     removed_edges = []
 
