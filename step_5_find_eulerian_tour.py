@@ -98,4 +98,7 @@ def main():
 
     eulerian_cycle = find_eulerian_tour(Multigraph)
 
-    print(eulerian_cycle) 
+    print(eulerian_cycle)
+    
+if __name__ == '__main__':
+    main()
