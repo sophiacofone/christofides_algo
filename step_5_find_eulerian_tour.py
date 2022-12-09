@@ -7,7 +7,7 @@ Input Multi_Graph (MST + Perfect Match) in a list of lists
 
 Action: 
   for all edges in the Multigraph
-  Create a dictionairy {Key is vertex: [ list of neighbores ]
+  Create a dictionary for vertices and their neighbours  {Key is vertex: [ list of neighbours ]
   
   v1 : [ v2, v3, ...] 
   v2
@@ -28,10 +28,10 @@ def find_eulerian_tour(Multigraph):
     #Value is a list of neighbors 
     neighbours = {}
     for edge in Multigraph:
-        if edge[0] not in neighbours: #Add neighbor v[u] :[ v[w] ] 
+        if edge[0] not in neighbours: #Add to dictionary neighbours v[u] :[ v[w] ] 
             neighbours[edge[0]] = []
 
-        if edge[1] not in neighbours: #Add neighbor v[w] :[ v[u] ]
+        if edge[1] not in neighbours: #Add to dictionary neighbours v[w] :[ v[u] ]
             neighbours[edge[1]] = []
          
 
