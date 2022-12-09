@@ -15,21 +15,21 @@ A list of verticies forming a Hamiltonian Circut
 
 '''
 
-def convert_Eulerian_Circuit(eulerian_Circut): 
+def convert_Eulerian_Circuit(eulerian_Circuit): 
     approx_optimial_path = []
     removed_edges = []
 
-    for vertex in eulerian_Circut:
+    for vertex in eulerian_Circuit:
         if vertex not in removed_edges:
             approx_optimial_path.append(vertex)
             removed_edges.append(vertex)
     return approx_optimial_path
 
 def main(): 
-    eulerian_circut = [1, 0, 4, 1, 0, 4, 1, 2, 1, 3, 5, 2, 5, 3, 1]
+    eulerian_Circuit = [1, 0, 4, 1, 0, 4, 1, 2, 1, 3, 5, 2, 5, 3, 1]
     
-    hamiltonian_Circut = convert_Eulerian_Circuit(eulerian_circut)
-    print(hamiltonian_Circut)
+    hamiltonian_Circuit = convert_Eulerian_Circuit(eulerian_circut)
+    print(hamiltonian_Circuit)
     
 if __name__ == '__main__':
     main()
