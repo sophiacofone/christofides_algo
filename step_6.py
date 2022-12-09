@@ -1,4 +1,4 @@
-def convert_Eulerian_Circuit(): 
+def convert_Eulerian_Circuit(eulerian_circut): 
     approx_optimial_path = []
     removed_edges = []
 
