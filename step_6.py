@@ -5,4 +5,4 @@ def Eulerian_path():
     for num in ep_with_copies:
         if num not in blacklist:
             euler_path.append(num)
-            blacklist.append(num)
+            removed_edges.append(num)
