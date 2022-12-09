@@ -20,11 +20,11 @@ Action:
 
 
     
-def find_eulerian_tour(MatchedMSTree, G):
+def find_eulerian_tour(Multigraph):
     # find neigbours
     neighbours = {}
     print('For')
-    for edge in MatchedMSTree:
+    for edge in Multigraph:
         if edge[0] not in neighbours:
             neighbours[edge[0]] = []
 
@@ -38,18 +38,18 @@ def find_eulerian_tour(MatchedMSTree, G):
     print("Neighbours: ", neighbours)
 
     # finds the hamiltonian circuit
-    start_vertex = MatchedMSTree[0][0]
+    start_vertex = Multigraph[0][0]
     print('start_vertex:', start_vertex)
-    eulerian_tour = [neighbours[start_vertex][0]]
-    while len(MatchedMSTree) > 0:
-        for i, v in enumerate(eulerian_tour):
+    eulerian_circut = [neighbours[start_vertex][0]]
+    while len(Multigraph) > 0:
+        for i, v in enumerate(eulerian_circut):
             if len(neighbours[v]) > 0:
                 break
 
         while len(neighbours[v]) > 0:
             w = neighbours[v][0]
 
-            remove_edge_from_matchedMST(MatchedMSTree, v, w)
+            remove_edge_from_matchedMST(Multigraph, v, w)
             print('Edge Removed:',v,w)
             del neighbours[v][(neighbours[v].index(w))]
             del neighbours[w][(neighbours[w].index(v))]
@@ -57,7 +57,7 @@ def find_eulerian_tour(MatchedMSTree, G):
             i += 1
   
             print(neighbours)
-            eulerian_tour.insert(i, w)
+            eulerian_circut.insert(i, w)
         
             
 
@@ -66,13 +66,13 @@ def find_eulerian_tour(MatchedMSTree, G):
     return eulerian_tour
 
 
-def remove_edge_from_matchedMST(MatchedMST, v1, v2):
+def remove_edge_from_Multigraph(Multigraph, v1, v2):
 
-    for i, item in enumerate(MatchedMST):
+    for i, item in enumerate(Multigraph):
         if (item[0] == v2 and item[1] == v1) or (item[0] == v1 and item[1] == v2):
             del MatchedMST[i]
 
-    return MatchedMST
+    return Multigraph
 
 
 def main(): 
@@ -85,8 +85,8 @@ def main():
 
 
     #(MST + PerfectMatch)
-    MatchedMSTree = [[0, 1, 0], [0, 4, 0], [1, 0, 0], [1, 2, 0], [1, 4, 0], [1, 3, 0], [2, 1, 0], [2, 5, 0], [3, 5, 0], [3, 1, 0], [4, 1, 0], [4, 0, 0], [5, 2, 0], [5, 3, 0]]
+    Multigraph = [[0, 1, 0], [0, 4, 0], [1, 0, 0], [1, 2, 0], [1, 4, 0], [1, 3, 0], [2, 1, 0], [2, 5, 0], [3, 5, 0], [3, 1, 0], [4, 1, 0], [4, 0, 0], [5, 2, 0], [5, 3, 0]]
 
-    eulerian_cycle = find_eulerian_tour(MatchedMSTree,G)
+    eulerian_cycle = find_eulerian_tour(Multigraph,G)
 
     print(eulerian_cycle) 
