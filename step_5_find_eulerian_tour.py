@@ -49,7 +49,7 @@ def find_eulerian_tour(Multigraph):
         while len(neighbours[v]) > 0:
             w = neighbours[v][0]
 
-            remove_edge_from_matchedMST(Multigraph, v, w)
+            remove_edge_from_Multigraph(Multigraph, v, w)
             print('Edge Removed:',v,w)
             del neighbours[v][(neighbours[v].index(w))]
             del neighbours[w][(neighbours[w].index(v))]
