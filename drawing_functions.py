@@ -37,7 +37,9 @@ def draw_edge(v1_coors, v2_coors, num_vertices, weight, image):
     x2, y2 = v2_coors[0], v2_coors[1]
     
     # Interpolate to find a place to draw the edge weight
-    lamb = np.random.rand(1)
+#    lamb = np.random.rand(1)
+#    lamb = (lamb*0.6)+0.2
+    lamb = 0.7
     xt = lamb*x1 + (1-lamb)*x2
     yt = lamb*y1 + (1-lamb)*y2
     
@@ -45,15 +47,19 @@ def draw_edge(v1_coors, v2_coors, num_vertices, weight, image):
     image.text( xt, yt, weight )
     
     return
-   
-# Draw a representation of the given graph to the given image
-def draw_graph( graph, image ):
-    num_vertices = len(graph)
     
-    # Get coordinates of all vertices, draw vertices
+def get_vertex_coors(num_vertices):
+    # Generate coordinates of all vertices
     vert_coors = np.zeros((num_vertices, 2))
     for vert in range(num_vertices):
         vert_coors[vert] = vertex_coordinates(vert, num_vertices)
+        
+    return vert_coors
+
+   
+# Draw a representation of the given graph to the given image
+def draw_graph( graph, image, vert_coors, num_vertices ):
+    for vert in range(num_vertices):
         draw_vertex(vert, vert_coors[vert], num_vertices, image)
     
     # draw all edges
@@ -61,10 +67,22 @@ def draw_graph( graph, image ):
         for v2 in graph[v1].keys():
             v2 = int(v2)
             if v2 > v1:
+                print(v2)
+                print(v1)
+                print(graph)
                 weight = graph[v1][str(v2)]
                 draw_edge(vert_coors[v1], vert_coors[v2], num_vertices, weight, image)
     
     return
+    
+def draw_odd_verts( odd_verts, image, vert_coors, num_vertices ):
+    # Draw odd vertices
+    for vert in odd_verts:
+        draw_vertex(vert, vert_coors[vert], num_vertices, image)
+            
+    return
+        
+    
 
 # Draw a title to the given image
 def draw_title(ax, title):
