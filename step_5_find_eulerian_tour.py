@@ -1,11 +1,23 @@
 #Robert Lalani 12.08.22
 
 
-  '''
+ '''
    
 Input Multi_Graph (MST + Perfect Match) in a list of lists
 
 Action: 
+  for all edges in the Multigraph
+  Create a dictionairy {Key is vertex: [ list of neighbores ]
+  
+  v1 : [ v2, v3, ...] 
+  v2
+  v3
+  ...
+  
+  Cycles through graph, records path until all edges have been visted.  
+  
+  Output: Eulerian Circut as a list
+ 
 '''
 
 
