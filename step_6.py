@@ -1,3 +1,5 @@
+from step_5_find_eulerian_tour import find_eulerian_tour
+
 def convert_Eulerian_Circuit(eulerian_circut): 
     approx_optimial_path = []
     removed_edges = []
