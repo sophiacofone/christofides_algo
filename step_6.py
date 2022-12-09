@@ -1,8 +1,8 @@
 def Eulerian_path(): 
-    Eulerian_path = []
+    euler_path = []
     removed_edges = []
 
     for num in ep_with_copies:
         if num not in blacklist:
-            final_list.append(num)
+            euler_path.append(num)
             blacklist.append(num)
