@@ -63,7 +63,7 @@ def find_eulerian_tour(Multigraph):
 
             v = w
 
-    return eulerian_tour
+    return eulerian_circut
 
 
 def remove_edge_from_Multigraph(Multigraph, v1, v2):
@@ -87,6 +87,6 @@ def main():
     #(MST + PerfectMatch)
     Multigraph = [[0, 1, 0], [0, 4, 0], [1, 0, 0], [1, 2, 0], [1, 4, 0], [1, 3, 0], [2, 1, 0], [2, 5, 0], [3, 5, 0], [3, 1, 0], [4, 1, 0], [4, 0, 0], [5, 2, 0], [5, 3, 0]]
 
-    eulerian_cycle = find_eulerian_tour(Multigraph,G)
+    eulerian_cycle = find_eulerian_tour(Multigraph)
 
     print(eulerian_cycle) 
