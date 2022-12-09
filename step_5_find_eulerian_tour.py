@@ -24,18 +24,6 @@ Action:   For every edge in the multigraph:
                   Add node 0 key and node 1 value neighbour dict
     neighbours_dict_Output: Neighbours Dictionary - Key is vertex, Value is  vertices who share an edge
 
-
-
-    G: (NOT MST OR match)
-    [{'1': 1, '2': 18, '3': 16, '4': 11},
-    {'0': 1, '2': 8, '3': 6, '4': 15},
-    {'0': 18, '1': 8, '3': 4, '4': 14},
-    {'0': 16, '1': 6, '2': 4, '4': 14},
-    {'0': 11, '1': 15, '2': 14, '3': 14}]
-
-    MatchedMSTree (MST + PerfectMatch)
-    [[0, 1, 0], [0, 4, 0], [1, 0, 0], [1, 2, 0], [1, 4, 0], [1, 3, 0], [2, 1, 0], [2, 5, 0], [3, 5, 0], [3, 1, 0], [4, 1, 0], [4, 0, 0], [5, 2, 0], [5, 3, 0]]
-
     """
 def find_eulerian_tour(MatchedMSTree, G):
     # find neigbours
