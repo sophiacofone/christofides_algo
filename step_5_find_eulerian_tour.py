@@ -79,7 +79,7 @@ def remove_edge_from_Multigraph(Multigraph, v1, v2):
 
     for i, item in enumerate(Multigraph):
         if (item[0] == v2 and item[1] == v1) or (item[0] == v1 and item[1] == v2):
-            del MatchedMST[i]
+            del Multigraph[i]
 
     return Multigraph
 
