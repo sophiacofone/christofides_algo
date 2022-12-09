@@ -1,7 +1,8 @@
-def remove_edge_from_matchedMST(MatchedMST, v1, v2):
+def Eulerian_path(): 
+    Eulerian_path = []
+    removed_edges = []
 
-    for i, item in enumerate(MatchedMST):
-        if (item[0] == v2 and item[1] == v1) or (item[0] == v1 and item[1] == v2):
-            del MatchedMST[i]
-
-    return MatchedMST
+    for num in ep_with_copies:
+        if num not in blacklist:
+            final_list.append(num)
+            blacklist.append(num)
