@@ -6,3 +6,5 @@ def Eulerian_path():
         if num not in removed_edges:
             euler_path.append(num)
             removed_edges.append(num)
+    return euler_path
+   
