@@ -66,12 +66,12 @@ def draw_graph( graph, image, vert_coors, num_vertices ):
     for v1 in range(len(graph)):
         for v2 in graph[v1].keys():
             v2 = int(v2)
+            
             if v2 > v1:
-                print(v2)
-                print(v1)
-                print(graph)
                 weight = graph[v1][str(v2)]
                 draw_edge(vert_coors[v1], vert_coors[v2], num_vertices, weight, image)
+                    
+            
     
     return
     
@@ -81,6 +81,26 @@ def draw_odd_verts( odd_verts, image, vert_coors, num_vertices ):
         draw_vertex(vert, vert_coors[vert], num_vertices, image)
             
     return
+    
+    
+    
+def convert_vis_dict_to_list(X, num_vertices):
+#    ls = [ [] for s in range(num_vertices) ]
+    ls = []
+#    {src:{} for src in range(num_vertices)}
+
+    for source, dict in enumerate(X):
+        for dest,weight in dict.items():
+            # from src to dest
+            ls.append( [source, dest, weight] )
+    #        src_dict[source][dest[0]] = dest[1]
+            # from dest to src
+            ls.append( [dest, source, weight] )
+    #        src_dict[int(dest[0])][str(source)] = dest[1]
+
+#    brendan_version = list(src_dict.values())
+
+    return ls
         
     
 

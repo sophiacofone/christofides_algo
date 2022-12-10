@@ -82,7 +82,6 @@ def kruskal(graph):
     X=[]
     node_tracker = makeset(graph)
     sorted_graph = sort_by_weight(graph)
-    print(sorted_graph)
     for i in range(len(sorted_graph)):
         subset1 = find(sorted_graph[i][0],node_tracker)
         subset2 = find(sorted_graph[i][1],node_tracker)
@@ -112,6 +111,7 @@ def convert_vis(graph,X,num_vertices):
     brendan_version = list(src_dict.values())
 
     return src_dict, brendan_version
+    
 
 def main():
 
