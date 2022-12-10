@@ -1,6 +1,9 @@
 #Robert Lalani 12.08.22
 from Final_Project_Steps_3_4 import minimumWeightedMatching
 
+import drawing_functions as df
+import matplotlib.pyplot as plt
+
 '''
    
 Input Multi_Graph (MST + Perfect Match) in a list of lists
@@ -21,7 +24,7 @@ Action:
 
 
     
-def find_eulerian_tour(Multigraph):
+def find_eulerian_tour(Multigraph, graph, image, vert_coors, num_vertices):
     
     #Dictionary: Keys are the vertices in the Multigraph
     #Value is a list of neighbors
@@ -45,10 +48,10 @@ def find_eulerian_tour(Multigraph):
     print('start_vertex:', start_vertex)
     
     #Keeps track of the Eulerian Tour
-    eulerian_circut = [neighbours[start_vertex][0]]
+    eulerian_circuit = [neighbours[start_vertex][0]]
     while len(Multigraph) > 0:
         #enumerates path
-        for i, v in enumerate(eulerian_circut):
+        for i, v in enumerate(eulerian_circuit):
             if len(neighbours[v]) > 0:
                 break
         #While vertex has neighbors
@@ -67,11 +70,18 @@ def find_eulerian_tour(Multigraph):
             i += 1
   
             print(neighbours)
-            eulerian_circut.insert(i, w)  # Add vertex to tour path
+            eulerian_circuit.insert(i, w)  # Add vertex to tour path
 
             v = w # Move selected vertex to w
+            
+            # Draw current eulerian_circuit to
+            image.clear()
+            df.draw_euler_circuit( eulerian_circuit, graph, image, vert_coors, num_vertices )
+            df.draw_title(image, "")
+            plt.draw()
+            plt.waitforbuttonpress()
 
-    return eulerian_circut
+    return eulerian_circuit
 
 
 def remove_edge_from_Multigraph(Multigraph, v1, v2):

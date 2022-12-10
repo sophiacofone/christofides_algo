@@ -54,6 +54,10 @@ def main(argv):
     
     # perfect matching in upper right
     MST, matching = s34.minimumWeightedMatching(MST, graph, odd_verts)
+    
+    print("matching")
+    print(matching)
+    
     matching_std = gr.convert_vis_dict(matching, num_vertices) # convert matching to standard graph format for display
     df.draw_graph( matching_std, ax[0,1], vert_coors, num_vertices )
     df.draw_title(ax[0,1], "M: Perfect Matching")
@@ -67,27 +71,46 @@ def main(argv):
     plt.draw()
     plt.waitforbuttonpress()
     
-    ax[1,1].clear()
+    
+    # Rearrange some graphs
+    
+    ax[0,1].clear() # clear perfect matching
+    ax[1,0].clear() # clear MST
+    ax[1,1].clear() # clear eulerian multigraph
+    
+    df.draw_graph( multigraph, ax[1,0], vert_coors, num_vertices )
+    df.draw_title(ax[1,0], "T U M: Eulerian Multigraph")
+    
     
     # Eulerian circuit in lower right
+    print("multi 1:")
+    print(multigraph)
+    
     multigraph = gr.convert_vis_dict_to_list(multigraph, num_vertices) # convert multigraph format
-#    print("multigraph:")
-#    print(multigraph)
-    eulerian_cycle = s5.find_eulerian_tour(multigraph)
     
-    eulerian_cycle_std = gr.convert_euler_cycle(eulerian_cycle, num_vertices)
+    print("multi 2:")
+    print(multigraph)
     
-    print(eulerian_cycle)
-    df.draw_euler_cycle( eulerian_cycle, graph, ax[1,1], vert_coors, num_vertices )
+    eulerian_circuit = s5.find_eulerian_tour(multigraph, graph, ax[1,1], vert_coors, num_vertices)
+    
+    print("euler")
+    print(eulerian_circuit)
+    
+    df.draw_euler_circuit( eulerian_circuit, graph, ax[1,1], vert_coors, num_vertices )
 #    df.draw_graph( eulerian_cycle_std, ax[1,1], vert_coors, num_vertices )
     df.draw_title(ax[1,1], "Eulerian Circuit")
     plt.draw()
     plt.waitforbuttonpress()
     
+    
+    # move eulerian circuit up one plot
     ax[1,1].clear()
+    df.draw_euler_circuit( eulerian_circuit, graph, ax[0,1], vert_coors, num_vertices )
+    df.draw_title(ax[0,1], "Eulerian Circuit")
+    
     
     # Hamiltonian circuit in lower right
-    hamiltonian_cycle = s6.convert_Eulerian_Circuit(eulerian_cycle)
+    hamiltonian_cycle = s6.convert_Eulerian_Circuit(eulerian_circuit, graph, ax[1,1], vert_coors, num_vertices)
     df.draw_ham_cycle( hamiltonian_cycle, graph, ax[1,1], vert_coors, num_vertices )
 #    df.draw_graph( hamiltonian_circuit, ax[1,1], vert_coors, num_vertices )
     df.draw_title(ax[1,1], "Hamiltonian Circuit")

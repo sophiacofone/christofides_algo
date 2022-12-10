@@ -1,5 +1,8 @@
 from step_5_find_eulerian_tour import find_eulerian_tour
 
+import drawing_functions as df
+import matplotlib.pyplot as plt
+
 '''
 Input: Eulerian Circuit
 
@@ -15,7 +18,7 @@ A list of verticies forming a Hamiltonian Circut
 
 '''
 
-def convert_Eulerian_Circuit(eulerian_Circuit): 
+def convert_Eulerian_Circuit(eulerian_Circuit, graph, image, vert_coors, num_vertices): 
     approx_optimial_path = []
     removed_edges = []
 
@@ -23,6 +26,12 @@ def convert_Eulerian_Circuit(eulerian_Circuit):
         if vertex not in removed_edges:
             approx_optimial_path.append(vertex)
             removed_edges.append(vertex)
+            
+            df.draw_euler_circuit( approx_optimial_path, graph, image, vert_coors, num_vertices )
+            df.draw_title(image, "")
+            plt.draw()
+            plt.waitforbuttonpress()
+            
     return approx_optimial_path
 
 def main(): 

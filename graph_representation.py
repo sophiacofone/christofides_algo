@@ -56,7 +56,7 @@ def convert_vis_dict_to_list(X, num_vertices):
             # from src to dest
             ls.append( [source, int(dest), weight] )
             # from dest to src
-            ls.append( [int(dest), source, weight] )
+#            ls.append( [int(dest), source, weight] )
 
     return ls
 
