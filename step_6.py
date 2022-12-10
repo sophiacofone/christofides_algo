@@ -28,7 +28,7 @@ def convert_Eulerian_Circuit(eulerian_Circuit):
 def main(): 
     eulerian_Circuit = [1, 0, 4, 1, 0, 4, 1, 2, 1, 3, 5, 2, 5, 3, 1]
     
-    hamiltonian_Circuit = convert_Eulerian_Circuit(eulerian_circut)
+    hamiltonian_Circuit = convert_Eulerian_Circuit(eulerian_Circuit)
     print(hamiltonian_Circuit)
     
 if __name__ == '__main__':
