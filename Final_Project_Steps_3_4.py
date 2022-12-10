@@ -32,9 +32,9 @@ def minimumWeightedMatching(G, odd_vert):
                     u = str(u)
                     if G[v][u] < weight : #if a weight lower than the one previously established is found, set the weight of (v, u) in G to that weight
                             weight = G[v][u]
-                            print("weight " + str(weight) + "\n")
+#                            print("weight " + str(weight) + "\n")
                             nearest = u
-                            print("nearest " + str(nearest) + "\n")
+#                            print("nearest " + str(nearest) + "\n")
 
             currTotalWeight += weight
             oddvert_ToJoin[v] = [nearest, weight]
@@ -57,6 +57,7 @@ def minimumWeightedMatching(G, odd_vert):
         
     return hold_ToJoin[totalWeights.index(min(totalWeights))]
 
+
 #This function adds the minimum weight matching to the MST generating a multi-graph.
 def formMultigraph(MST, ToJoin):
     '''Input: an MST, a dictionary containing the edges to add and their weights
@@ -70,9 +71,12 @@ def formMultigraph(MST, ToJoin):
 
     for v in ToJoin.keys():     
 
-        MST.insert(v, dict({ToJoin[v][0]: ToJoin[v][1]})) #add the edges from the matching to the MST
+#        MST.insert(v, dict({ToJoin[v][0]: ToJoin[v][1]})) #add the edges from the matching to the MST
+        MST[ v ][ ToJoin[v][0] ] = ToJoin[v][1] #add the edges from the matching to the MST
+        MST[ int(ToJoin[v][0]) ][ str(v) ] = ToJoin[v][1] #add the reverse edge from the matching to the MST
     
     return MST
+
 
 def main():
     
@@ -95,6 +99,7 @@ def main():
     print(multGraph)
     print("\n")
 
-main()
+if __name__ == '__main__':
+    main()
 
 

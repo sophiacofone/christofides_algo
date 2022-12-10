@@ -66,22 +66,61 @@ def draw_graph( graph, image, vert_coors, num_vertices ):
     for v1 in range(len(graph)):
         for v2 in graph[v1].keys():
             v2 = int(v2)
+            
             if v2 > v1:
-                print(v2)
-                print(v1)
-                print(graph)
                 weight = graph[v1][str(v2)]
                 draw_edge(vert_coors[v1], vert_coors[v2], num_vertices, weight, image)
+                    
+            
     
     return
-    
+
+# Draw the set of odd-degree vertices, no edges
 def draw_odd_verts( odd_verts, image, vert_coors, num_vertices ):
     # Draw odd vertices
     for vert in odd_verts:
         draw_vertex(vert, vert_coors[vert], num_vertices, image)
             
     return
+    
+# Draw the set of odd-degree vertices, no edges
+def draw_euler_circuit( circuit, graph, image, vert_coors, num_vertices ):
+    # Draw odd vertices
+    for vert in circuit:
+        draw_vertex(vert, vert_coors[vert], num_vertices, image)
         
+    # draw all edges
+    for i in range(len(circuit) - 1):
+        v1 = circuit[i]
+        v2 = circuit[i+1]
+        
+        weight = graph[v1][str(v2)]
+        draw_edge(vert_coors[v1], vert_coors[v2], num_vertices, weight, image)
+            
+    return
+    
+# Draw the set of odd-degree vertices, no edges
+def draw_ham_cycle( cycle, graph, image, vert_coors, num_vertices ):
+    # Draw odd vertices
+    for vert in cycle:
+        draw_vertex(vert, vert_coors[vert], num_vertices, image)
+        
+    # draw all edges
+    for i in range(len(cycle) - 1):
+        v1 = cycle[i]
+        v2 = cycle[i+1]
+        
+        weight = graph[v1][str(v2)]
+        draw_edge(vert_coors[v1], vert_coors[v2], num_vertices, weight, image)
+        
+    v1 = cycle[-1]
+    v2 = cycle[0]
+
+    weight = graph[v1][str(v2)]
+    draw_edge(vert_coors[v1], vert_coors[v2], num_vertices, weight, image)
+            
+    return
+    
     
 
 # Draw a title to the given image
