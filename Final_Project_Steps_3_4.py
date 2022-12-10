@@ -3,18 +3,32 @@
 #Fall 2022
 
 #This function finds the minimum weight matching 
-def minimumWeightedMatching(MST, G, odd_vert):
+def minimumWeightedMatching(G, odd_vert):
     '''Input: The minimum weight spanning tree, the original graph as a list of dictionaries, the list of odd vertices
        Output: A multigraph, the MST
     '''
+    
     oddvert_ToJoin = {}
-
-    while odd_vert:
-        v = odd_vert.pop(0) #pop off the first odd degree vertex in the list
-        print("\nfor " + str(v) + "\n")
-        weight = float('inf') #set the weight to inf initially
-        nearest = 0 #set the nearest node to 0 initially, this is arbitrary
-        for u in odd_vert: #for all other nodes in odd_vert besides v
+    currTotalWeight = 0
+    totalWeights = []
+    hold_ToJoin=[]
+    
+   
+    
+    for x in range(0, len(odd_vert)):
+        print("\nNow Testing\n")
+        print(odd_vert)
+        print("\n")
+        odd_vert1 = odd_vert[:]
+        
+        while odd_vert:
+            
+            v = odd_vert.pop(0) #pop off the first odd degree vertex in the list
+            print("\nfor " + str(v) + "\n")
+            weight = float('inf') #set the weight to inf initially
+            nearest = 0 #set the nearest node to 0 initially, this is arbitrary
+            
+            for u in odd_vert: #for all other nodes in odd_vert besides v
                     u = str(u)
                     if G[v][u] < weight : #if a weight lower than the one previously established is found, set the weight of (v, u) in G to that weight
                             weight = G[v][u]
@@ -22,16 +36,37 @@ def minimumWeightedMatching(MST, G, odd_vert):
                             nearest = u
                             print("nearest " + str(nearest) + "\n")
 
-        oddvert_ToJoin[v] = [nearest, weight]
-        odd_vert.remove(int(nearest))
-
-    return MST, oddvert_ToJoin
+            currTotalWeight += weight
+            oddvert_ToJoin[v] = [nearest, weight]
+            odd_vert.remove(int(nearest))
+        
+        totalWeights.append(currTotalWeight)
+        
+        print("\nCurrent Total Weight\n")
+        print(currTotalWeight)
+        currTotalWeight = 0
+        
+        print("\nThe Current Matching\n")
+        hold_ToJoin.append(oddvert_ToJoin)
+        print(oddvert_ToJoin)
+        print("\n")
+        
+        oddvert_ToJoin = {}
+        
+        odd_vert = [odd_vert1[-1]]+odd_vert1[0:-1]
+        
+    return hold_ToJoin[totalWeights.index(min(totalWeights))]
 
 #This function adds the minimum weight matching to the MST generating a multi-graph.
 def formMultigraph(MST, ToJoin):
     '''Input: an MST, a dictionary containing the edges to add and their weights
        Output: A multigraph
     '''
+
+    print("\nThe Selected Matching:")
+    print(ToJoin)
+    print("\n")
+
 
     for v in ToJoin.keys():     
 
@@ -48,15 +83,17 @@ def main():
 {'0': 8, '1': 2, '2': 15, '3': 19, '5': 9}, 
 {'0': 8, '1': 11, '2': 6, '3': 8, '4': 9}]
 
-    MinST = [{'1': 5}, {'2': 1, '4': 2, '0': 5}, {'1': 1, '5': 6}, {'5': 8}, {'1': 2}, {'2': 6, '3': 8}]
+    MST = [{'1': 5}, {'2': 1, '4': 2, '0': 5}, {'1': 1, '5': 6}, {'5': 8}, {'1': 2}, {'2': 6, '3': 8}]
 
     odd_vert = [0, 1, 3, 4]
     
-    MST, ToJoin = minimumWeightedMatching(MinST, G, odd_vert)
+    ToJoin = minimumWeightedMatching(G, odd_vert)
 
     multGraph = formMultigraph(MST, ToJoin)
 
+    print("The multigraph:")
     print(multGraph)
+    print("\n")
 
 main()
 
