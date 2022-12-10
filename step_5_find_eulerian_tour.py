@@ -1,20 +1,19 @@
 #Robert Lalani 12.08.22
-from Final_Project_Steps_3_4 import minimumWeightedMatching 
+from Final_Project_Steps_3_4 import minimumWeightedMatching
 
- '''
+'''
    
 Input Multi_Graph (MST + Perfect Match) in a list of lists
-
-Action: 
+Action:
   for all edges in the Multigraph
   Create a dictionary for vertices and their neighbours  {Key is vertex: [ list of neighbours ]
   
-  v1 : [ v2, v3, ...] 
+  v1 : [ v2, v3, ...]
   v2
   v3
   ...
   
-  Cycles through graph, records path until all edges have been visted.  
+  Cycles through graph, records path until all edges have been visted.
   
   Output: Eulerian Circut as a list
  
@@ -24,11 +23,11 @@ Action:
     
 def find_eulerian_tour(Multigraph):
     
-    #Dictionary: Keys are the vertices in the Multigraph 
-    #Value is a list of neighbors 
+    #Dictionary: Keys are the vertices in the Multigraph
+    #Value is a list of neighbors
     neighbours = {}
     for edge in Multigraph:
-        if edge[0] not in neighbours: #Add to dictionary neighbours v[u] :[ v[w] ] 
+        if edge[0] not in neighbours: #Add to dictionary neighbours v[u] :[ v[w] ]
             neighbours[edge[0]] = []
 
         if edge[1] not in neighbours: #Add to dictionary neighbours v[w] :[ v[u] ]
@@ -41,7 +40,7 @@ def find_eulerian_tour(Multigraph):
     print("Neighbours: ", neighbours)
 
     # finds the hamiltonian circuit
-     # Start at the first vertex (can be arbitrary) 
+     # Start at the first vertex (can be arbitrary)
     start_vertex = Multigraph[0][0]
     print('start_vertex:', start_vertex)
     
@@ -52,9 +51,9 @@ def find_eulerian_tour(Multigraph):
         for i, v in enumerate(eulerian_circut):
             if len(neighbours[v]) > 0:
                 break
-        #While vertex has neighbors 
+        #While vertex has neighbors
         while len(neighbours[v]) > 0:
-            # Key : Selected Vertex , 
+            # Key : Selected Vertex ,
             # Value: First Element in Neighbor list
             w = neighbours[v][0]
              
@@ -84,7 +83,7 @@ def remove_edge_from_Multigraph(Multigraph, v1, v2):
     return Multigraph
 
 
-def main(): 
+def main():
 
     G = [{'1': 1, '2': 18, '3': 16, '4': 11},
     {'0': 1, '2': 8, '3': 6, '4': 15},
@@ -98,6 +97,7 @@ def main():
 
     eulerian_cycle = find_eulerian_tour(Multigraph)
 
+    print("cycle")
     print(eulerian_cycle)
     
 if __name__ == '__main__':

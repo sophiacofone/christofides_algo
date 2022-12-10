@@ -14,7 +14,7 @@ import mst_step1 as s1
 import odd_degree_step2 as s2
 import Final_Project_Steps_3_4 as s34
 import step_5_find_eulerian_tour as s5
-
+import step_6 as s6
 
 
 def main(argv):
@@ -54,7 +54,7 @@ def main(argv):
     
     # perfect matching in upper right
     MST, matching = s34.minimumWeightedMatching(MST, graph, odd_verts)
-    matching_std = s34.convert_vis_dict(matching, num_vertices) # convert matching to standard graph format for display
+    matching_std = gr.convert_vis_dict(matching, num_vertices) # convert matching to standard graph format for display
     df.draw_graph( matching_std, ax[0,1], vert_coors, num_vertices )
     df.draw_title(ax[0,1], "M: Perfect Matching")
     plt.draw()
@@ -70,17 +70,26 @@ def main(argv):
     ax[1,1].clear()
     
     # Eulerian circuit in lower right
+    multigraph = gr.convert_vis_dict_to_list(multigraph, num_vertices) # convert multigraph format
+#    print("multigraph:")
+#    print(multigraph)
+    eulerian_cycle = s5.find_eulerian_tour(multigraph)
     
-    multigraph = s5.convert_vis_dict_to_list(multigraph, num_vertices) # convert multigraph format
-    eulerian_cycle = s5.find_eulerian_tour(multigraph,graph)
+    eulerian_cycle_std = gr.convert_euler_cycle(eulerian_cycle, num_vertices)
+    
     print(eulerian_cycle)
-    df.draw_graph( eulerian_cycle, ax[1,1], vert_coors, num_vertices )
+    df.draw_euler_cycle( eulerian_cycle, graph, ax[1,1], vert_coors, num_vertices )
+#    df.draw_graph( eulerian_cycle_std, ax[1,1], vert_coors, num_vertices )
     df.draw_title(ax[1,1], "Eulerian Circuit")
     plt.draw()
     plt.waitforbuttonpress()
     
-    # Hamiltonian circuit in lower right
     ax[1,1].clear()
+    
+    # Hamiltonian circuit in lower right
+    hamiltonian_cycle = s6.convert_Eulerian_Circuit(eulerian_cycle)
+    df.draw_ham_cycle( hamiltonian_cycle, graph, ax[1,1], vert_coors, num_vertices )
+#    df.draw_graph( hamiltonian_circuit, ax[1,1], vert_coors, num_vertices )
     df.draw_title(ax[1,1], "Hamiltonian Circuit")
     plt.draw()
     plt.waitforbuttonpress()

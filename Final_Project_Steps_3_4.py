@@ -26,19 +26,6 @@ def minimumWeightedMatching(MST, G, odd_vert):
         odd_vert.remove(int(nearest))
 
     return MST, oddvert_ToJoin
-    
-    
-def convert_vis_dict(X, num_vertices):
-    src_dict = {src:{} for src in range(num_vertices)}
-    for source,dest in X.items():
-        # from src to dest
-        src_dict[source][dest[0]] = dest[1]
-        # from dest to src
-        src_dict[int(dest[0])][str(source)] = dest[1]
-
-    brendan_version = list(src_dict.values())
-
-    return brendan_version
 
 
 #This function adds the minimum weight matching to the MST generating a multi-graph.

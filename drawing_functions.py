@@ -74,7 +74,8 @@ def draw_graph( graph, image, vert_coors, num_vertices ):
             
     
     return
-    
+
+# Draw the set of odd-degree vertices, no edges
 def draw_odd_verts( odd_verts, image, vert_coors, num_vertices ):
     # Draw odd vertices
     for vert in odd_verts:
@@ -82,26 +83,44 @@ def draw_odd_verts( odd_verts, image, vert_coors, num_vertices ):
             
     return
     
-    
-    
-def convert_vis_dict_to_list(X, num_vertices):
-#    ls = [ [] for s in range(num_vertices) ]
-    ls = []
-#    {src:{} for src in range(num_vertices)}
-
-    for source, dict in enumerate(X):
-        for dest,weight in dict.items():
-            # from src to dest
-            ls.append( [source, dest, weight] )
-    #        src_dict[source][dest[0]] = dest[1]
-            # from dest to src
-            ls.append( [dest, source, weight] )
-    #        src_dict[int(dest[0])][str(source)] = dest[1]
-
-#    brendan_version = list(src_dict.values())
-
-    return ls
+# Draw the set of odd-degree vertices, no edges
+def draw_euler_cycle( cycle, graph, image, vert_coors, num_vertices ):
+    # Draw odd vertices
+    for vert in cycle:
+        draw_vertex(vert, vert_coors[vert], num_vertices, image)
         
+    # draw all edges
+    for i in range(len(cycle) - 1):
+        v1 = cycle[i]
+        v2 = cycle[i+1]
+        
+        weight = graph[v1][str(v2)]
+        draw_edge(vert_coors[v1], vert_coors[v2], num_vertices, weight, image)
+            
+    return
+    
+# Draw the set of odd-degree vertices, no edges
+def draw_ham_cycle( cycle, graph, image, vert_coors, num_vertices ):
+    # Draw odd vertices
+    for vert in cycle:
+        draw_vertex(vert, vert_coors[vert], num_vertices, image)
+        
+    # draw all edges
+    for i in range(len(cycle) - 1):
+        v1 = cycle[i]
+        v2 = cycle[i+1]
+        
+        weight = graph[v1][str(v2)]
+        draw_edge(vert_coors[v1], vert_coors[v2], num_vertices, weight, image)
+        
+    v1 = cycle[-1]
+    v2 = cycle[0]
+
+    weight = graph[v1][str(v2)]
+    draw_edge(vert_coors[v1], vert_coors[v2], num_vertices, weight, image)
+            
+    return
+    
     
 
 # Draw a title to the given image
