@@ -109,7 +109,7 @@ def remove_edge_from_Multigraph(Multigraph, v1, v2):
 
     return Multigraph
 
-
+'''
 def main():
 
     G = [{'1': 1, '2': 18, '3': 16, '4': 11},
@@ -126,6 +126,7 @@ def main():
 
     print("cycle")
     print(eulerian_cycle)
-    
+
 if __name__ == '__main__':
     main()
+'''    
