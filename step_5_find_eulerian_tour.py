@@ -38,7 +38,6 @@ def find_eulerian_tour(Multigraph, graph, image, vert_coors, num_vertices):
          
 
         neighbours[edge[0]].append(edge[1])
-        neighbours[edge[1]].append(edge[0])
 
     print("Neighbours: ", neighbours)
 
@@ -70,6 +69,7 @@ def find_eulerian_tour(Multigraph, graph, image, vert_coors, num_vertices):
             i += 1
   
             print(neighbours)
+            print(Multigraph)
             eulerian_circuit.insert(i, w)  # Add vertex to tour path
 
             v = w # Move selected vertex to w
@@ -85,10 +85,27 @@ def find_eulerian_tour(Multigraph, graph, image, vert_coors, num_vertices):
 
 
 def remove_edge_from_Multigraph(Multigraph, v1, v2):
-
-    for i, item in enumerate(Multigraph):
-        if (item[0] == v2 and item[1] == v1) or (item[0] == v1 and item[1] == v2):
+    # Flags indicating whether the first instance of an edge has been encountered
+    found_to = False
+    found_from = False
+    
+    # For all edges in the graph
+    i = 0
+    while i < len(Multigraph):
+        #Remove the first instance of the edge from v1 to v2
+        if ((not found_to) and Multigraph[i][0] == v1 and Multigraph[i][1] == v2):
+            found_to = True
             del Multigraph[i]
+            i = i-1 #Adjust edge index since an edge was deleted
+        
+        #Remove the first instance of the edge from v2 to v1
+        if ((not found_from) and Multigraph[i][0] == v2 and Multigraph[i][1] == v1):
+            found_from = True
+            del Multigraph[i]
+            i = i-1 #Adjust edge index since an edge was deleted
+            
+        i = i+1
+        
 
     return Multigraph
 

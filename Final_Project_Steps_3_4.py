@@ -72,8 +72,11 @@ def formMultigraph(MST, ToJoin):
     for v in ToJoin.keys():     
 
 #        MST.insert(v, dict({ToJoin[v][0]: ToJoin[v][1]})) #add the edges from the matching to the MST
-        MST[ v ][ ToJoin[v][0] ] = ToJoin[v][1] #add the edges from the matching to the MST
-        MST[ int(ToJoin[v][0]) ][ str(v) ] = ToJoin[v][1] #add the reverse edge from the matching to the MST
+#        MST[ v ][ ToJoin[v][0] ] = ToJoin[v][1] #add the edges from the matching to the MST
+#        MST[ int(ToJoin[v][0]) ][ str(v) ] = ToJoin[v][1] #add the reverse edge from the matching to the MST
+        
+        MST.append( [v, int(ToJoin[v][0]) , ToJoin[v][1]] )
+        MST.append( [int(ToJoin[v][0]), v, ToJoin[v][1]] )
     
     return MST
 

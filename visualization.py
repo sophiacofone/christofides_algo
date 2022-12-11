@@ -50,46 +50,60 @@ def main(argv):
     plt.draw()
     plt.waitforbuttonpress()
     
+    
+    
+    
     ax[0,1].clear() # clear odd-degree vertex drawing to make way for perfect matching
     
+    
+    
+    
     # perfect matching in upper right
-    MST, matching = s34.minimumWeightedMatching(MST, graph, odd_verts)
-    
-    print("matching")
-    print(matching)
-    
+    matching = s34.minimumWeightedMatching(graph, odd_verts)
     matching_std = gr.convert_vis_dict(matching, num_vertices) # convert matching to standard graph format for display
     df.draw_graph( matching_std, ax[0,1], vert_coors, num_vertices )
     df.draw_title(ax[0,1], "M: Perfect Matching")
     plt.draw()
     plt.waitforbuttonpress()
     
+    # Convert MST from graph form to multigraph form
+    MST = gr.convert_vis_dict_to_list(MST, num_vertices)
+    
+    
     # Eulerian multigraph in lower right
     multigraph = s34.formMultigraph(MST, matching)
-    df.draw_graph( multigraph, ax[1,1], vert_coors, num_vertices )
+    print("multi")
+    print(multigraph)
+    _, multigraph_std = s1.convert_vis(graph, multigraph, num_vertices) # Convert from multigraph form to graph form
+    print("multi 2")
+    print(multigraph_std)
+    df.draw_graph( multigraph_std, ax[1,1], vert_coors, num_vertices )
     df.draw_title(ax[1,1], "T U M: Eulerian Multigraph")
     plt.draw()
     plt.waitforbuttonpress()
     
     
-    # Rearrange some graphs
     
+    
+    # Rearrange some graphs
     ax[0,1].clear() # clear perfect matching
     ax[1,0].clear() # clear MST
     ax[1,1].clear() # clear eulerian multigraph
-    
-    df.draw_graph( multigraph, ax[1,0], vert_coors, num_vertices )
+    df.draw_graph( multigraph_std, ax[1,0], vert_coors, num_vertices )
     df.draw_title(ax[1,0], "T U M: Eulerian Multigraph")
     
     
+    
+    
+    
     # Eulerian circuit in lower right
-    print("multi 1:")
-    print(multigraph)
-    
-    multigraph = gr.convert_vis_dict_to_list(multigraph, num_vertices) # convert multigraph format
-    
-    print("multi 2:")
-    print(multigraph)
+#    print("multi 1:")
+#    print(multigraph)
+#    
+#    multigraph = gr.convert_vis_dict_to_list(multigraph, num_vertices) # convert multigraph format
+#    
+#    print("multi 2:")
+#    print(multigraph)
     
     eulerian_circuit = s5.find_eulerian_tour(multigraph, graph, ax[1,1], vert_coors, num_vertices)
     
