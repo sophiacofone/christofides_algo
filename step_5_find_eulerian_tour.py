@@ -98,7 +98,7 @@ def remove_edge_from_Multigraph(Multigraph, v1, v2):
             del Multigraph[i]
             i = i-1 #Adjust edge index since an edge was deleted
         
-        #Remove the first instance of the edge from v2 to v1
+        #Remove the second instance of the edge from v2 to v1
         if ((not found_from) and Multigraph[i][0] == v2 and Multigraph[i][1] == v1):
             found_from = True
             del Multigraph[i]
